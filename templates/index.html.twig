@@ -1,0 +1,77 @@
+<!--
+  index.html.twig
+  Fichier html pour index.php
+!-->
+<div class="container">
+    <div class="text-center mt-5 mb-5">
+        <h1>Accueil du blog IUT</h1>
+    </div>
+
+
+    {% if session.notification %}
+        <div class="row">
+            <div class="col-12">
+                <div class="alert alert-{{ session.notification.result }}" role="alert">
+                        {{ session.notification.message }}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    
+    <div class="row">
+        {% for articles in listeArticles %}
+            <div class="col-6 mb-4">    
+                <div class="card">
+                    <img class="card-img-top" src="img/{{ articles.getID}}.jpg" style="max-width: 100px;" alt="{{ articles.getTitre}}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ articles.getTitre}}</h5>
+                        <p class="card-text">{{ articles.getTexte}}</p>
+                        <a class="btn btn-primary">{{ articles.getDate}}</a>
+                        <a href="articles.php?id={{ articles.getID}}" class="btn btn-warning" >Modifier</a>
+                            <form action="index.php" method="post" enctype="multipart/form-data">
+                                <div class="form-group mb-4">
+                                    <h4 class"mb-4">Votre commentaire</h4>
+                                    <label for="message">Commentaire</label>
+                                    <textarea name="com" id="com"msg cols="30" rows="5" class="form-control" style="background-color: white;"></textarea>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="name">Pseudo</label>
+                                    <input type="text" name="pseudo" id="pseudo" class="form-control">
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="email">Email</label>
+                                    <input type="email" name="email" id="email" class="form-control">
+                                </div>
+                                <div class="form-group mb-4">
+                                    <button type="submit" value="publier_com" class="btn btn-secondary" name="publier_com">Publier</button>
+                                </div>   
+                            </form> 
+                            <p class="card-text"><h2>Vos commentaires</h2></p>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-sm-5 col-md-6 col-12 pb-4">
+                                        <div class="comment mt-4 text-justify float-left">
+                                            <h4>{{commentaire.get_pseudo}}</h4>
+                                            <br>
+                                            <p>{{commentaire.getcom}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             
+        {% endfor %}
+    </div>
+
+    <nav aria-label="Page de navigation mt-5">
+        <ul class="pagination justify-content-center">
+            {% for i in 1..nbPages%}
+            <li class="page-item {% if page == i %}active{% endif %}" >
+                <a Class="page-link" href="?page= {{ i }}"> {{ i }} </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </nav>
+</div>

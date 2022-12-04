@@ -1,0 +1,33 @@
+<!--
+  utilisateur.html.twig
+  Fichier html pour utilisateur.php
+!-->
+<div class="container">
+    <div class="text-center mt-5 mb-5">
+       <h1>S'enregistrer</h1>
+    </div>
+    <form action="utilisateur.php" method="post" enctype="multipart/form-data">
+        <div class="col-12 mb-1">
+            <div class="form-outline mb-4">
+            <label class="form-label" for="registerName">Nom</label>
+            <input type="text" name="nom" class="form-control" />
+        </div>
+
+        <div class="form-outline mb-4">
+            <label class="form-label" for="registerUsername">Prénom</label>
+            <input type="text" name="prenom" class="form-control" />
+        </div>
+
+        <div class="form-outline mb-4">
+            <label class="form-label" for="registerEmail">Email</label>
+            <input type="email" name="email" class="form-control" />
+        </div>
+
+        <div class="form-outline mb-4">
+            <label class="form-label" for="registerPassword">Mot de passe</label>
+            <input type="password" name="mdp" class="form-control" />
+        </div>
+
+    <button class="btn btn-secondary" type="submit" name="login" value="login">S'enregistrer</button>
+    </form>
+</div>
